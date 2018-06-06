@@ -1,0 +1,35 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+djangorestframework = "*"
+django-cors-headers = "*"
+dj-database-url = "*"
+"psycopg2" = "*"
+celery = "*"
+redis = "*"
+
+[dev-packages]
+django = "*"
+djangorestframework = "*"
+django-cors-headers = "*"
+dj-database-url = "*"
+django-debug-toolbar = "*"
+"psycopg2" = "*"
+celery = "*"
+redis = "*"
+
+[requires]
+python_version = "3.6"
+
+[scripts]
+migrate = "python manage.py migrate"
+makemigrations = "python manage.py makemigrations"
+runserver = "python manage.py runserver"
+createsuperuser = "python manage.py createsuperuser"
+shell = "python manage.py shell_plus"
+celery = "celery -A config:celery_app worker -B -l info"
+collectstatic = "python manage.py collectstatic --no-input"
