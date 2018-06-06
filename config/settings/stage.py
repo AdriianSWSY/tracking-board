@@ -2,6 +2,11 @@ from .base import *
 
 DEBUG = False
 
+SHOW_DOCS = os.getenv('SHOW_DOCS', False)
+
+if SHOW_DOCS:
+    INSTALLED_APPS += ('drf_yasg', )
+
 ALLOWED_HOSTS = ['*']
 
 RAVEN_CONFIG = {

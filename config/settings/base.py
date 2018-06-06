@@ -3,7 +3,9 @@ import sys
 import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(
+           os.path.dirname(os.path.abspath(__file__))))
+
 sys.path.append(os.path.join(BASE_DIR, 'apps'))
 
 
@@ -125,3 +127,18 @@ CORS_ORIGIN_ALLOW_ALL = True
 ADMIN_SITE_HEADER = 'Gorilla API'
 
 DEFAULT_FROM_EMAIL = 'noreply@gorilla.com'
+
+# DOCS
+
+SHOW_DOCS = True
+
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': False,
+    'SECURITY_DEFINITIONS': {
+        'Token': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    }
+}

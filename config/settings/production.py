@@ -2,6 +2,8 @@ from .base import *
 
 DEBUG = False
 
+SHOW_DOCS = False
+
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 ALLOWED_HOSTS = ['*']

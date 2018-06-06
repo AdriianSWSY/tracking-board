@@ -21,6 +21,7 @@ django-debug-toolbar = "*"
 "psycopg2" = "*"
 celery = "*"
 redis = "*"
+drf-yasg = "*"
 
 [requires]
 python_version = "3.6"

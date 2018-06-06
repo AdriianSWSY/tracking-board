@@ -3,8 +3,11 @@ from .base import *
 
 DEBUG = True
 
+SHOW_DOCS = True
+
 INSTALLED_APPS += (
     'debug_toolbar',
+    'drf_yasg'
 )
 
 MIDDLEWARE += (
