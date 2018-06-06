@@ -8,7 +8,7 @@ admin.site.register = settings.ADMIN_SITE_HEADER
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    
+    path('v1/', include('apps.api.urls', namespace='api')),
 ]
 
 
