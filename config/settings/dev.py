@@ -24,3 +24,9 @@ EMAIL_HOST = 'smtp.mailtrap.io'
 EMAIL_PORT = '2525'
 EMAIL_HOST_USER = os.getenv('MAILTRAP_EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('MAILTRAP_EMAIL_HOST_PASSWORD')
+
+# local.py settings
+try:
+    from .local import *
+except ImportError:
+    pass
