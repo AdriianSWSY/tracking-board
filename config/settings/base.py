@@ -31,9 +31,11 @@ INSTALLED_APPS = [
     # Packages:
     'rest_framework',
     'corsheaders',
+    'phonenumber_field',
 
     # Apps:
-    'apps.core.apps.CoreConfig'
+    'apps.core.apps.CoreConfig',
+    'apps.users.apps.UsersConfig'
 
 ]
 
@@ -119,9 +121,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 # Celery
+
 CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')
 
 # CORS HEADERS:
+
 CORS_ORIGIN_ALLOW_ALL = True
 
 # DOCS
@@ -138,6 +142,10 @@ SWAGGER_SETTINGS = {
         }
     }
 }
+
+# User model config
+
+AUTH_USER_MODEL = 'users.User'
 
 # Django Admin settings:
 

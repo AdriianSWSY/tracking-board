@@ -12,6 +12,8 @@ dj-database-url = "*"
 "psycopg2-binary" = "*"
 celery = "*"
 redis = "*"
+django-phonenumber-field = "*"
+pillow = "*"
 
 [dev-packages]
 django = "*"
@@ -24,6 +26,8 @@ django-debug-toolbar = "*"
 celery = "*"
 redis = "*"
 drf-yasg = "*"
+django-phonenumber-field = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.6"
