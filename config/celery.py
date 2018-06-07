@@ -9,7 +9,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.dev')
 
 app = Celery('gorilla')
 app.config_from_object('django.conf:settings')
-app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
+app.autodiscover_tasks()
 
 TASK_SERIALIZER = 'json'
 ACCEPT_CONTENT = ['json']
