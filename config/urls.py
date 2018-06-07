@@ -11,6 +11,7 @@ admin.site.index_title = settings.ADMIN_INDEX_TITLE
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('v1/', include('apps.api.urls', namespace='api')),
+    path('', include('django.contrib.auth.urls')),
 ]
 
 

@@ -9,13 +9,14 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.dev')
 
 app = Celery('gorilla')
 app.config_from_object('django.conf:settings')
-app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
+app.autodiscover_tasks()
 
 TASK_SERIALIZER = 'json'
 ACCEPT_CONTENT = ['json']
 
 app.conf.update(
     BROKER_URL=settings.CELERY_BROKER_URL,
+    # CELERY_IMPORTS=('users.tasks',)
     # CELERYBEAT_SCHEDULE={
     #     "some_task": {
     #         "task": " module.tasks.function",

@@ -30,8 +30,12 @@ INSTALLED_APPS = [
 
     # Packages:
     'rest_framework',
+    'rest_framework.authtoken',
+    'allauth',
+    'allauth.account',
     'corsheaders',
     'phonenumber_field',
+    'rest_auth',
 
     # Apps:
     'apps.core.apps.CoreConfig',
@@ -147,7 +151,7 @@ SWAGGER_SETTINGS = {
 
 AUTH_USER_MODEL = 'users.User'
 
-# Django Admin settings:
+# Django Admin settings
 
 ADMIN_SITE_HEADER = 'Gorilla API Admin'
 
@@ -155,8 +159,39 @@ ADMIN_SITE_TITLE = 'Gorilla API Portal'
 
 ADMIN_INDEX_TITLE = 'Welcome to Gorilla API Admin'
 
+# Account Settings
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    # "django.contrib.auth.backends.ModelBackend",
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
+ACCOUNT_LOGOUT_ON_GET = True
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+
+ACCOUNT_USERNAME_REQUIRED = False
+
+SITE_ID = 1
+
+REST_AUTH_SERIALIZERS = {
+    'PASSWORD_RESET_SERIALIZER': 'users.serializers.PasswordResetCustomSerializer',
+}
+
 # Email Settings
 
 DEFAULT_FROM_EMAIL = 'noreply@gorilla.com'
 
-SITE_ID = 1
+URL_FRONT_RESET_PASSWORD = os.getenv('URL_FRONT_RESET_PASSWORD')
+
+# Rest Framework Settings
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
