@@ -139,9 +139,15 @@ SWAGGER_SETTINGS = {
     }
 }
 
-#
+# Django Admin settings:
 
-ADMIN_SITE_HEADER = 'Gorilla API'
+ADMIN_SITE_HEADER = 'Gorilla API Admin'
+
+ADMIN_SITE_TITLE = 'Gorilla API Portal'
+
+ADMIN_INDEX_TITLE = 'Welcome to Gorilla API Admin'
+
+# Email Settings
 
 DEFAULT_FROM_EMAIL = 'noreply@gorilla.com'
 
