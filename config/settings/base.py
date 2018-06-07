@@ -124,10 +124,6 @@ CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')
 # CORS HEADERS:
 CORS_ORIGIN_ALLOW_ALL = True
 
-ADMIN_SITE_HEADER = 'Gorilla API'
-
-DEFAULT_FROM_EMAIL = 'noreply@gorilla.com'
-
 # DOCS
 
 SHOW_DOCS = True
@@ -142,3 +138,11 @@ SWAGGER_SETTINGS = {
         }
     }
 }
+
+#
+
+ADMIN_SITE_HEADER = 'Gorilla API'
+
+DEFAULT_FROM_EMAIL = 'noreply@gorilla.com'
+
+SITE_ID = 1
