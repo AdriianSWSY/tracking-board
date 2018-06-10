@@ -6,6 +6,8 @@
 - celery + redis, django-rest-framework from box
 - MailTrap (dev) and SendGrid (production) mail settings
 - Auto generated schemas Swagger/OpenAPI 2.0 for you project
+- Abstaract User and User Manager
+- Login/Logout, Password Change, Forgot Request and Forgot Confirm
 
 
 ## Quick Start:
