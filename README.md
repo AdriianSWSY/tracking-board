@@ -1,4 +1,4 @@
-# Django Empty Skeleton
+# Django Base Acoount Skeleton
 
 ## Features:
 
