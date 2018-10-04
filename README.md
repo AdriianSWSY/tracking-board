@@ -1,4 +1,4 @@
-# Django Base Acoount Skeleton
+# Django Abstract User Skeleton
 
 ## Features:
 
