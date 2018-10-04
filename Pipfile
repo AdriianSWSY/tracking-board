@@ -16,6 +16,7 @@ django-phonenumber-field = "*"
 pillow = "*"
 django-rest-auth = "*"
 django-allauth = "*"
+django-extensions = "*"
 
 [dev-packages]
 django = "*"
@@ -32,6 +33,7 @@ django-phonenumber-field = "*"
 pillow = "*"
 django-rest-auth = "*"
 django-allauth = "*"
+django-extensions = "*"
 
 [requires]
 python_version = "3.6"
@@ -39,8 +41,10 @@ python_version = "3.6"
 [scripts]
 migrate = "python manage.py migrate"
 makemigrations = "python manage.py makemigrations"
-runserver = "python manage.py runserver"
+server = "python manage.py runserver"
 createsuperuser = "python manage.py createsuperuser"
-shell = "python manage.py shell_plus"
+shell = "python manage.py shell"
+shell_plus = "python manage.py shell_plus"
+show_urls = "python manage.py show_urls"
 celery = "celery -A config.celery worker -B -l info"
 collectstatic = "python manage.py collectstatic --no-input"

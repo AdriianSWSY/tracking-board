@@ -34,8 +34,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'corsheaders',
-    'phonenumber_field',
     'rest_auth',
+    'django_extensions',
 
     # Apps:
     'apps.core.apps.CoreConfig',
@@ -153,11 +153,11 @@ AUTH_USER_MODEL = 'users.User'
 
 # Django Admin settings
 
-ADMIN_SITE_HEADER = 'Gorilla API Admin'
+ADMIN_SITE_HEADER = 'API Admin'
 
-ADMIN_SITE_TITLE = 'Gorilla API Portal'
+ADMIN_SITE_TITLE = 'API Portal'
 
-ADMIN_INDEX_TITLE = 'Welcome to Gorilla API Admin'
+ADMIN_INDEX_TITLE = 'Welcome to API Admin'
 
 # Account Settings
 
@@ -177,16 +177,6 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_USERNAME_REQUIRED = False
 
 SITE_ID = 1
-
-REST_AUTH_SERIALIZERS = {
-    'PASSWORD_RESET_SERIALIZER': 'users.serializers.PasswordResetCustomSerializer',
-}
-
-# Email Settings
-
-DEFAULT_FROM_EMAIL = 'noreply@gorilla.com'
-
-URL_FRONT_RESET_PASSWORD = os.getenv('URL_FRONT_RESET_PASSWORD')
 
 # Rest Framework Settings
 

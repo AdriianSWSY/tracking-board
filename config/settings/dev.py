@@ -7,7 +7,7 @@ SHOW_DOCS = True
 
 INSTALLED_APPS += (
     'debug_toolbar',
-    'drf_yasg'
+    'drf_yasg',
 )
 
 MIDDLEWARE += (

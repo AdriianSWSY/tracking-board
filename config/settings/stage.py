@@ -18,9 +18,5 @@ INSTALLED_APPS += (
     'anymail',
 )
 
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = True
-
 EMAIL_BACKEND = 'anymail.backends.sendgrid.EmailBackend'
 ANYMAIL = {'SENDGRID_API_KEY': os.getenv('SENDGRID_API_KEY')}
