@@ -21,6 +21,7 @@ django-debug-toolbar = "*"
 drf-yasg = "*"
 kombu = "*"
 sentry-sdk = "*"
+gunicorn = "*"
 
 [dev-packages]
 django = "*"
