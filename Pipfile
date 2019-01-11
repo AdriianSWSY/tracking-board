@@ -19,6 +19,8 @@ django-allauth = "*"
 django-extensions = "*"
 django-debug-toolbar = "*"
 drf-yasg = "*"
+kombu = "*"
+sentry-sdk = "*"
 
 [dev-packages]
 django = "*"

@@ -153,11 +153,13 @@ AUTH_USER_MODEL = 'users.User'
 
 # Django Admin settings
 
-ADMIN_SITE_HEADER = 'API Admin'
+ADMIN_SITE_HEADER = os.getenv('ADMIN_SITE_HEADER', 'API Admin')
 
-ADMIN_SITE_TITLE = 'API Portal'
+ADMIN_SITE_TITLE = os.getenv('ADMIN_SITE_TITLE', 'API Portal')
 
-ADMIN_INDEX_TITLE = 'Welcome to API Admin'
+ADMIN_INDEX_TITLE = os.getenv('ADMIN_INDEX_TITLE', 'Welcome to API Admin')
+
+ADMIN_SITE_URL = os.getenv('ADMIN_SITE_URL', 'http://localhost:8000/')
 
 # Account Settings
 
@@ -168,11 +170,13 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
-ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_LOGOUT_ON_GET = False
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+
+ACCOUNT_EMAIL_REQUIRED = True
 
 ACCOUNT_USERNAME_REQUIRED = False
 
@@ -184,4 +188,10 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
     )
+}
+
+# Rest Auth Settings
+
+REST_AUTH_SERIALIZERS = {
+    'TOKEN_SERIALIZER': 'apps.users.serializers.TokenCustomSerializer'
 }

@@ -1,3 +1,5 @@
-from django.shortcuts import render
+from rest_auth.views import LoginView
 
-# Create your views here.
+
+class LoginCustomView(LoginView):
+    authentication_classes = []

@@ -30,6 +30,7 @@ class UserManager(BaseUserManager):
     def create_superuser(self, email, password, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('role', User.ROLE_ADMIN)
 
         if extra_fields.get('is_staff') is not True:
             raise ValueError('Superuser must have is_staff=True.')
@@ -41,20 +42,21 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    username = models.CharField(max_length=32, default=uuid_hex,
-                                blank=False, null=True, unique=True)
+    username = models.CharField(max_length=32, blank=False, null=True)
     email = models.EmailField(max_length=254, unique=True)
     first_name = models.CharField(max_length=64, blank=True, null=True)
     last_name = models.CharField(max_length=64, blank=True, null=True)
     avatar = models.ImageField(blank=True, null=True,
                                upload_to='avatars/%Y/%m/%d')
 
-    ROLE_ADMIN = 1
+    ROLE_ADMIN = 'admin'
+    ROLE_USER = 'user'
     ROLE_CHOICES = (
         (ROLE_ADMIN, 'Admin'),
+        (ROLE_USER, 'User'),
     )
-    role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES,
-                                            default=ROLE_ADMIN)
+    role = models.CharField(max_length=256,
+                            choices=ROLE_CHOICES, default=ROLE_USER)
 
     is_staff = models.BooleanField(
         default=False,
@@ -65,7 +67,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         default=True,
         help_text='Designates whether this user should be treated as active. '
                   'Unselect this instead of deleting accounts.'
-
     )
 
     date_joined = models.DateField(auto_now_add=True)
