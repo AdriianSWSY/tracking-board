@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 
 DATABASES = {
-    'default': dj_database_url.config(default='postgres://localhost/gorilla'),
+    'default': dj_database_url.config(default='postgres://localhost/gostylepro'),
 }
 
 
