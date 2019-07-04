@@ -40,7 +40,11 @@ class CustomFacebookOAuth2Adapter(FacebookOAuth2Adapter):
     """
     Overridden for including check_social_sign_up step.
     Also in default Facebook OAuth2Adapter there is 'appsecret_proof' parameter
-    in request to Facebook, and here it is not.
+    in request to Facebook, and here it is not. 'appsecret_proof' needs
+    for  more security. By default in Facebook Developer app this parameter
+    is disabled, so, if you want, you can enable it and add into
+    request in complete_login() method like this:
+        'appsecret_proof': compute_appsecret_proof(app, token).
     """
     def complete_login(self, request, app, access_token, **kwargs):
         provider = providers.registry.by_id(FacebookProvider.id, request)
