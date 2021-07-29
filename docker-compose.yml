@@ -1,0 +1,52 @@
+version: "3.9"
+
+
+services:
+  app_postgres:
+    container_name: app_postgres
+    image: postgres
+    env_file:
+      - ./env_files/prod.env
+    volumes:
+      - ./db_data:/var/lib/postgresql/data
+    networks:
+      - app_network
+    ports:
+      - "5432:5432"
+
+  backend:
+    container_name: app_backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    env_file:
+      - ./env_files/prod.env
+    volumes:
+      - ./backend:/usr/src/backend
+    depends_on:
+      - app_postgres
+    networks:
+      - app_network
+    ports:
+      - "8080:8080"
+
+  app_nginx:
+    container_name: app_nginx
+    build:
+      context: ./docker/nginx
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - ./backend/staticfiles/:/staticfiles
+      - ./backend/nginx_logs/:/var/log/nginx
+    depends_on:
+      - backend
+      - app_postgres
+    networks:
+      - app_network
+    ports:
+      - "80:80"
+
+
+networks:
+  app_network:

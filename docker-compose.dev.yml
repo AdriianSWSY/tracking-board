@@ -1,0 +1,36 @@
+version: "3.9"
+
+
+services:
+  dev_app_postgres:
+    container_name: dev_app_postgres
+    image: postgres
+    env_file:
+      - ./env_files/dev.env
+    volumes:
+      - ./dev_db_data:/var/lib/postgresql/data
+    networks:
+      - dev_app_network
+    ports:
+      - "7001:5432"
+
+  dev_app_backend:
+    container_name: dev_app_backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    env_file:
+      - ./env_files/dev.env
+    entrypoint: ["python", "manage.py", "runserver", "0.0.0.0:7000"]
+    volumes:
+      - ./backend:/usr/src/backend
+    depends_on:
+      - dev_app_postgres
+    networks:
+      - dev_app_network
+    ports:
+      - "7000:7000"
+
+
+networks:
+  dev_app_network:

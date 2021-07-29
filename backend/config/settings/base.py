@@ -1,21 +1,11 @@
 import os
-import sys
-import dj_database_url
+from pathlib import Path
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(
-           os.path.dirname(os.path.abspath(__file__))))
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-sys.path.append(os.path.join(BASE_DIR, 'apps'))
+SECRET_KEY = os.getenv('SECRET_KEY')
 
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '5m(c)mr$cg)sif_0!3%(y=!1^l@fgu&r9!)+6z63$!34i^1981'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -59,7 +49,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -74,15 +64,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+
 # Database
 
 DATABASES = {
-    'default': dj_database_url.config(default='postgres://localhost/db_name'),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('POSTGRES_DB'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT')
+    }
 }
 
-
-# Password validation
-# https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -98,7 +93,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 
@@ -116,10 +110,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_collected')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = (BASE_DIR / 'static',)
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
@@ -182,7 +174,9 @@ ACCOUNT_USERNAME_REQUIRED = False
 
 SITE_ID = 1
 
-# Rest Framework Settings
+# Default primary key field type
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
