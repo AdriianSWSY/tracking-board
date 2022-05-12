@@ -15,5 +15,5 @@ urlpatterns = [
     path('auth/google/', auth_views.GoogleLoginView.as_view(),
          name='google_login_and_signup'),
 
-    path('auth/', include('rest_auth.urls')),
+    path('auth/', include('dj_rest_auth.urls')),
 ]

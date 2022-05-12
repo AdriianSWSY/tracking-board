@@ -1,4 +1,4 @@
-from rest_auth.views import LoginView
+from dj_rest_auth.views import LoginView
 
 
 class LoginCustomView(LoginView):
