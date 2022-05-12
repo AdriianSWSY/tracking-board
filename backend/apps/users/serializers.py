@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from rest_auth.serializers import TokenSerializer
+from dj_rest_auth.serializers import TokenSerializer
 
 from apps.users.models import User
 

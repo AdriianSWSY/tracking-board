@@ -7,7 +7,7 @@ from allauth.socialaccount.providers.facebook.views import \
     FacebookOAuth2Adapter
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from drf_yasg.utils import swagger_auto_schema as swagger
-from rest_auth.registration.views import SocialLoginView
+from dj_rest_auth.registration.views import SocialLoginView
 
 from apps.core.swagger_utils import social_auth_schema, AuthResponseSerializer
 
