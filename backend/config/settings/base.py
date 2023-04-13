@@ -29,7 +29,8 @@ INSTALLED_APPS = [
 
     # Apps:
     'apps.core.apps.CoreConfig',
-    'apps.users.apps.UsersConfig'
+    'apps.users.apps.UsersConfig',
+    'apps.board.apps.BoardConfig',
 
 ]
 
