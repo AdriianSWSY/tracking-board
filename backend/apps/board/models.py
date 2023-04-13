@@ -12,7 +12,7 @@ class Board(TimeStampedModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=128, null=False, blank=False)
     description = models.CharField(max_length=256, null=True, blank=True)
-    status = models.CharField(choices=BoardStatus.choices, default=BoardStatus.active)
+    status = models.CharField(max_length=128, choices=BoardStatus.choices, default=BoardStatus.active)
 
     creator = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="boards")
 
