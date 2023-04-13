@@ -1,3 +1,20 @@
-from django.db import models
+import uuid
 
-# Create your models here.
+from django.contrib.auth import get_user_model
+from django.db import models
+from django_extensions.db.models import TimeStampedModel
+
+from apps.board.enums import BoardStatus
+
+
+class Board(TimeStampedModel):
+    """Board table representation to interact with code via ORM"""
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=128, null=False, blank=False)
+    description = models.CharField(max_length=256, null=True, blank=True)
+    status = models.CharField(choices=BoardStatus.choices, default=BoardStatus.active)
+
+    creator = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="boards")
+
+    class Meta:
+        ordering = ['modified']
