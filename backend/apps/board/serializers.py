@@ -15,7 +15,6 @@ class BoardSerializer(serializers.ModelSerializer):
     creator = serializers.PrimaryKeyRelatedField(
         read_only=True,
         default=serializers.CurrentUserDefault(),
-        queryset=get_user_model().objects.all(),
     )
 
     class Meta:
