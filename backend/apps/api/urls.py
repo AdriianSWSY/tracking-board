@@ -16,4 +16,6 @@ urlpatterns = [
          name='google_login_and_signup'),
 
     path('auth/', include('dj_rest_auth.urls')),
+
+    path("", include("apps.board.urls")),
 ]
