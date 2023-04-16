@@ -9,7 +9,7 @@ class BoardSerializer(serializers.ModelSerializer):
     Serializer class for Board model.
 
     Includes creator field, which is a foreign key to the User model and is read-only.
-    The creator field is set to the current user when creating a new board.
+    The creator field is set to the current user when creating a new board in `perform_create` view method.
     """
 
     creator = serializers.PrimaryKeyRelatedField(
