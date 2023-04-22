@@ -6,3 +6,9 @@ class BoardStatus(models.TextChoices):
     active = "ACTIVE"
     archived = "ARCHIVED"
     deleted = "DELETED"
+
+
+class BoardUserRole(models.TextChoices):
+    """Options for role fields for the BoardUser entity"""
+    admin = "ADMIN"
+    user = "USER"

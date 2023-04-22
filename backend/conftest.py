@@ -4,7 +4,7 @@ import pytest
 from rest_framework.test import APIClient, APIRequestFactory
 
 from apps.board.models import Board
-from apps.board.tests.factories import BoardFactory
+from apps.board.tests.factories import BoardFactory, BoardUserFactory
 from apps.users.models import User
 from apps.users.tests.factories import UserFactory
 
@@ -30,3 +30,8 @@ def factory_board(factory_user) -> Board:
     """Return a Board instance created by BoardFactory"""
     return BoardFactory(creator=factory_user)
 
+
+@pytest.fixture
+def factory_member(factory_board) -> Board:
+    """Return a BoardUser instance created by BoardUserFactory"""
+    return BoardUserFactory(board=factory_board)
