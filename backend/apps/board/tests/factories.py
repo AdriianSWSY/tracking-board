@@ -10,3 +10,11 @@ class BoardFactory(factory.django.DjangoModelFactory):
 
     class Meta:
         model = "board.Board"
+
+
+class BoardUserFactory(factory.django.DjangoModelFactory):
+    board = SubFactory(BoardFactory)
+    user = SubFactory(UserFactory)
+
+    class Meta:
+        model = "board.BoardUser"

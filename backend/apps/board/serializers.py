@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-from apps.board.models import Board
+from apps.board.models import Board, BoardUser
 
 
 class BoardSerializer(serializers.ModelSerializer):
@@ -20,3 +20,14 @@ class BoardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Board
         fields = '__all__'
+
+
+class BoardUserSerializer(serializers.ModelSerializer):
+    """
+    Serializer class for BoardUser model.
+    """
+
+    class Meta:
+        model = BoardUser
+        fields = '__all__'
+        read_only_fields = ["created", "updated"]  # `created`/`updated` base fields inherited from base model class
