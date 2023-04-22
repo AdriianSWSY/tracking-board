@@ -1,3 +1,5 @@
+import uuid
+
 import pytest
 
 from django.urls import reverse
@@ -124,3 +126,18 @@ class TestBoardUserView:
         factory_member.refresh_from_db()
         assert response.status_code == status.HTTP_200_OK
         assert response.data["role"] == factory_member.role
+
+
+class TestBoardUserViewFiltering:
+    """Test case to test filtering for BoardUserView"""
+
+    def test_get_members_list_by_board_id(self, api_client, factory_user, factory_board):
+        members = BoardUserFactory(board=factory_board)
+
+        url = f"{reverse('api:boards:members-list')}?board={factory_board.id}"
+        api_client.force_authenticate(factory_user)
+
+        response = api_client.get(url)
+        assert response.status_code == status.HTTP_200_OK
+        assert response.data[0]['id'] == members.id
+

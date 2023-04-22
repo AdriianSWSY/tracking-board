@@ -1,3 +1,4 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, permissions
 
 from apps.board.models import Board, BoardUser
@@ -43,6 +44,7 @@ class BoardMemberViewSet(viewsets.ModelViewSet):
     serializer_class = BoardUserSerializer
     permission_classes = [permissions.IsAuthenticated]
     filter_backends = (DjangoFilterBackend,)
+    filterset_fields = ("board", )
 
     def get_queryset(self):
         """
