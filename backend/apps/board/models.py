@@ -8,7 +8,7 @@ from apps.board.enums import BoardStatus, BoardUserRole
 
 
 class Board(TimeStampedModel):
-    """Board table representation to interact with code via ORM"""
+    """Represents a board with a name, description, status, creator, and members."""
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=128, null=False, blank=False)
     description = models.CharField(max_length=256, null=True, blank=True)
@@ -22,7 +22,12 @@ class Board(TimeStampedModel):
 
 
 class BoardUser(TimeStampedModel):
-    """BoardUser table store user per board"""
+    """
+    Represents a user's role on a board.
+
+    By using a through model, we can add extra fields to the many-to-many relationship between Board and User.
+    In this case, the BoardUser model adds the "role" field to the relationship.
+    """
     role = models.CharField(max_length=128, choices=BoardUserRole.choices, default=BoardUserRole.user)
 
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="member_boards")

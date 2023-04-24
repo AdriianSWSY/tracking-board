@@ -24,10 +24,14 @@ class BoardSerializer(serializers.ModelSerializer):
 
 class BoardUserSerializer(serializers.ModelSerializer):
     """
-    Serializer class for BoardUser model.
+    Serializer for BoardUser model.
+
+    This serializer converts BoardUser instances to JSON and vice versa.
     """
 
     class Meta:
         model = BoardUser
         fields = '__all__'
-        read_only_fields = ["created", "updated"]  # `created`/`updated` base fields inherited from base model class
+
+        # `created` and `updated` fields are inherited from the TimeStampedModel base class and should not be modified.
+        read_only_fields = ["created", "updated"]
