@@ -12,14 +12,10 @@ class BoardSerializer(serializers.ModelSerializer):
     The creator field is set to the current user when creating a new board in `perform_create` view method.
     """
 
-    creator = serializers.PrimaryKeyRelatedField(
-        read_only=True,
-        default=serializers.CurrentUserDefault(),
-    )
-
     class Meta:
         model = Board
         fields = '__all__'
+        read_only_fields = ["created", "updated", "creator"]
 
 
 class BoardUserSerializer(serializers.ModelSerializer):
@@ -34,4 +30,4 @@ class BoardUserSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
         # `created` and `updated` fields are inherited from the TimeStampedModel base class and should not be modified.
-        read_only_fields = ["created", "updated"]
+        read_only_fields = ["created", "updated", "creator"]
