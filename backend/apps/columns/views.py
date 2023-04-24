@@ -27,3 +27,7 @@ class ColumnViewSet(viewsets.ModelViewSet):
         Return the list of boards that belong to the current user.
         """
         return Column.objects.filter(Q(board__creator=self.request.user) | Q(board__members=self.request.user))
+
+    def perform_create(self, serializer):
+        serializer.validated_data["creator"] = self.request.user
+        return super().perform_create(serializer)
