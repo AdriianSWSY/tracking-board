@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'apps.core.apps.CoreConfig',
     'apps.users.apps.UsersConfig',
     'apps.board.apps.BoardConfig',
+    'apps.columns.apps.ColumnsConfig',
 
 ]
 
